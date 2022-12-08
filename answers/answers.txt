@@ -1,0 +1,20 @@
+Part 1:
+mysql -u zprongua -p pokemon < pokemons.sql;
+
+Part 2:
+SELECT * FROM types;
+SELECT * FROM pokemons WHERE id=45;
+SELECT COUNT(DISTINCT name) FROM pokemons;
+SELECT COUNT(DISTINCT name) FROM types;
+SELECT COUNT(*) FROM pokemons WHERE secondary_type IS NOT NULL;
+
+Part 3:
+SELECT p.name Pokemon, t.name Type FROM pokemons p JOIN types t ON p.primary_type=t.id;
+SELECT p.name Pokemon, t.name 2Type FROM pokemons p JOIN types t WHERE p.secondary_type=t.id AND p.name='Rufflet';
+SELECT t.trainername Trainer, p.name Pokemon FROM pokemon_trainer pt JOIN trainers t ON pt.trainerID=t.trainerId JOIN pokemons p ON pt.pokemon_id=p.id WHERE pt.trainerID=303;
+SELECT COUNT(*) FROM pokemons p JOIN types t WHERE p.secondary_type=t.id AND t.name='Poison';
+SELECT t.name Type, COUNT(p.primary_type) 'Pokemon of Type' FROM types t JOIN pokemons p ON p.primary_type=t.id GROUP BY t.id;
+SELECT trainerID Trainer, COUNT(trainerID) 'No of Pokemon' FROM pokemon_trainer WHERE pokelevel>99 GROUP BY trainerID HAVING COUNT(trainerID)>1;
+SELECT p.name Pokemon, COUNT(pt.trainerID) Count FROM pokemon_trainer pt JOIN pokemons p ON p.id=pt.pokemon_id GROUP BY pokemon_id HAVING COUNT(pt.trainerID) = 1;
+
+Part 4:
